@@ -58,7 +58,8 @@ DEFINE TEMP-TABLE ttOrbit NO-UNDO
     FIELD cCenter  AS CHARACTER
     FIELD cOrbiter AS CHARACTER
     FIELD cPath    AS CHARACTER
-    INDEX ix IS UNIQUE cOrbiter.
+    INDEX io IS UNIQUE cOrbiter
+    .
 
 DEFINE BUFFER bttOrbit FOR ttOrbit.
 
@@ -78,16 +79,14 @@ END.
 DELETE ttOrbit.
 INPUT CLOSE.
 
-FOR EACH ttOrbit WHERE ttOrbit.cCenter <> "COM":
+FOR EACH ttOrbit WHERE ttOrbit.cOrbiter = "YOU" OR ttOrbit.cOrbiter = "SAN":
     cCenter = ttOrbit.cCenter.
-    IF ttOrbit.cOrbiter = "YOU" OR ttOrbit.cOrbiter = "SAN" THEN
-        ttOrbit.cPath = cCenter.
+    ttOrbit.cPath = cCenter.
     DO WHILE TRUE:
         FIND bttOrbit WHERE bttOrbit.cOrbiter = cCenter.
         IF bttOrbit.cCenter = "COM" THEN LEAVE.
         cCenter = bttOrbit.cCenter.
-        IF ttOrbit.cOrbiter = "YOU" OR ttOrbit.cOrbiter = "SAN" THEN
-            ttOrbit.cPath = cCenter + "," + ttOrbit.cPath.
+        ttOrbit.cPath = cCenter + "," + ttOrbit.cPath.
     END.
 END.
 
@@ -114,7 +113,7 @@ MESSAGE ETIME SKIP iPathYou - i + iPathSanta - j
 ---------------------------
 Information (Press HELP to view stack trace)
 ---------------------------
-13832 
+1194 
 397
 ---------------------------
 Aceptar   Ayuda   
