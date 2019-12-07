@@ -79,9 +79,7 @@ FUNCTION runProgram RETURNS LOGICAL (
             .
         CASE cOpcode:
             WHEN "01" THEN DO:
-                iRam[iRam[iPC + 3] + 1] = iRam[IF cMode1 = "1" THEN iPC + 1 ELSE iRam[iPC + 1] + 1
-                    
-                    ] + iRam[IF cMode2 = "1" THEN iPC + 2 ELSE iRam[iPC + 2] + 1].
+                iRam[iRam[iPC + 3] + 1] = iRam[IF cMode1 = "1" THEN iPC + 1 ELSE iRam[iPC + 1] + 1] + iRam[IF cMode2 = "1" THEN iPC + 2 ELSE iRam[iPC + 2] + 1].
                 iPC = iPC + 4.
             END.
             WHEN "02" THEN DO:
