@@ -223,7 +223,7 @@ MESSAGE ETIME SKIP iMax
 ---------------------------
 Information (Press HELP to view stack trace)
 ---------------------------
-4705
+2205
 3745599
 ---------------------------
 Aceptar   Ayuda   

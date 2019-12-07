@@ -176,7 +176,7 @@ MESSAGE ETIME SKIP iMax
 ---------------------------
 Information (Press HELP to view stack trace)
 ---------------------------
-595 
+90 
 440880
 ---------------------------
 Aceptar   Ayuda   
