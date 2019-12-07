@@ -95,7 +95,7 @@ MESSAGE ETIME SKIP iTotal
 ---------------------------
 Information (Press HELP to view stack trace)
 ---------------------------
-12278 
+2029 
 251208
 ---------------------------
 Aceptar   Ayuda   
