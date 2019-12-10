@@ -89,11 +89,11 @@ FUNCTION getAngle RETURNS DECIMAL (iX AS INTEGER, iY AS INTEGER):
     DO WHILE deAngle < 0:
         deAngle = deAngle + 2 * Math:PI.
     END.
-    RETURN deAngle / Math:PI * 180.
+    RETURN deAngle.
 END FUNCTION.
 
 FUNCTION getDistance RETURNS DECIMAL (iX AS INTEGER, iY AS INTEGER):
-    RETURN SQRT(EXP(iY - {&xiCenterY}, 2) + EXP(iX - {&xiCenterX}, 2)).
+    RETURN /* SQRT( */ EXP(iY - {&xiCenterY}, 2) + EXP(iX - {&xiCenterX}, 2) /* ) */.
 END FUNCTION.
 
 DEFINE TEMP-TABLE ttAsteroid NO-UNDO 
@@ -115,7 +115,6 @@ DO iChar = 1 TO LENGTH(cMap):
             ttAsteroid.iY      = iY
             ttAsteroid.deDist  = getDistance(iX, iY)
             ttAsteroid.deAngle = getAngle(iX, iY).
-
     END.
     iX = iX + 1.
     IF iX > {&xiColumns} - 1 THEN ASSIGN
@@ -150,7 +149,7 @@ END.
 ---------------------------
 Information (Press HELP to view stack trace)
 ---------------------------
-62 
+50 
 1 round(s) 
 706
 ---------------------------
