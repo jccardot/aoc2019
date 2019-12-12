@@ -150,34 +150,6 @@ END.
 
 /* The result is the LCM of the 3 periods */
 
-
-DEFINE VARIABLE HttpClient AS CLASS System.Net.WebClient. 
-DEFINE VARIABLE webResponse AS LONGCHAR NO-UNDO. 
-FIX-CODEPAGE (webResponse) = "UTF-8". 
-
-HttpClient = NEW System.Net.WebClient(). 
-HttpClient:Proxy:Credentials = System.Net.CredentialCache:DefaultNetworkCredentials. 
-
-webResponse = HttpClient:UploadString("https://www.dcode.fr/api/", '
-Content-Disposition: form-data; name="tool"~n
-~n
-lcm~n
-------WebKitFormBoundary7MA4YWxkTrZu0gW--,~n
-Content-Disposition: form-data; name="tool"~n
-~n
-lcm~n
-------WebKitFormBoundary7MA4YWxkTrZu0gW--~n
-Content-Disposition: form-data; name="numbers"~n
-~n
-113028,167624,231614~n
-------WebKitFormBoundary7MA4YWxkTrZu0gW--~n
-').
-
-HttpClient:Dispose(). 
-DELETE OBJECT HttpClient. 
-
-MESSAGE STRING(webResponse) VIEW-AS ALERT-BOX.
-
 MESSAGE ETIME SKIP "LCM(" iPeriodX "," iPeriodY "," iPeriodZ ")"
     VIEW-AS ALERT-BOX INFO BUTTONS OK.
 /*
