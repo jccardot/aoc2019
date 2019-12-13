@@ -150,16 +150,23 @@ END.
 
 /* The result is the LCM of the 3 periods */
 
-MESSAGE ETIME SKIP "LCM(" iPeriodX "," iPeriodY "," iPeriodZ ")"
+function gcd returns int64 (x as int64, y as int64):
+    if y = 0 then return x.
+    return gcd(y, x mod y).
+end function.
+function lcm returns int64 (x as int64, y as int64):
+    return int64((x * y) / gcd(x, y)).
+end function.
+
+MESSAGE ETIME SKIP "LCM(" iPeriodX "," iPeriodY "," iPeriodZ ") =" lcm(iPeriodX, lcm(iPeriodY, iPeriodZ))
     VIEW-AS ALERT-BOX INFO BUTTONS OK.
 /*
 ---------------------------
 Information (Press HELP to view stack trace)
 ---------------------------
-15174 
-LCM( 113028 , 167624 , 231614 )
+13084 
+LCM( 113028 , 167624 , 231614 ) = 548525804273976
 ---------------------------
 Aceptar   Ayuda   
 ---------------------------
---> LCM = 548525804273976
 */
